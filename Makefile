@@ -38,6 +38,9 @@ $(PACKAGE)-dev-%.rockspec: SEMVER = dev
 $(PACKAGE)-dev-%.rockspec: TAG = master
 $(PACKAGE)-dev-%.rockspec: $(PACKAGE).rockspec.in
 	$(rockpec_template)
+	sed -i \
+		"1i -- DO NOT EDIT! Modify template $< and rebuild with \`make $@\`" \
+		$@
 
 rockspecs/$(PACKAGE)-%.rockspec: SEMVER = $*
 rockspecs/$(PACKAGE)-%.rockspec: TAG = v$*
